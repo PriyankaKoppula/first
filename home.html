@@ -1,0 +1,244 @@
+<html>
+<head>
+<title>Home Page</title>
+<script>
+
+var imgno=0;
+var imgsrc=new Array(4);
+var loadedimages=new Array(5);
+
+imgsrc[0]=1;
+imgsrc[1]=2;
+imgsrc[2]=3;
+imgsrc[3]=4;
+
+
+loadedimages[1]=new Image();
+loadedimages[1].src="Images/ex1.jpg";
+loadedimages[2]=new Image();
+loadedimages[2].src="Images/ex2.jpg";
+loadedimages[3]=new Image();
+loadedimages[3].src="Images/ex3.jpg";
+loadedimages[4]=new Image();
+loadedimages[4].src="Images/ex4.jpg";
+
+
+function trans()
+{
+
+image1.style.filter="blendTrans(duration=2)";
+image1.filters.blendTrans.Apply();
+image1.filters.blendTrans.Play();
+image1.src=loadedimages[(imgsrc[0]%4+1)].src;
+
+image2.style.filter="blendTrans(duration=2)";
+image2.filters.blendTrans.Apply();
+image2.filters.blendTrans.Play();
+image2.src=loadedimages[(imgsrc[1]%4+1)].src;
+
+image3.style.filter="blendTrans(duration=2)";
+image3.filters.blendTrans.Apply();
+image3.filters.blendTrans.Play();
+image3.src=loadedimages[(imgsrc[2]%4+1)].src;
+
+image4.style.filter="blendTrans(duration=2)";
+image4.filters.blendTrans.Apply();
+image4.filters.blendTrans.Play();
+image4.src=loadedimages[(imgsrc[3]%4+1)].src;
+
+imgsrc[0]+=1;
+imgsrc[1]+=1;
+imgsrc[2]+=1;
+imgsrc[3]+=1;
+
+setTimeout("trans()",4000);
+}
+
+function unamefocus()
+{
+   if(loginform.uname.value=="Enter Your Regd. No")
+   {
+                    loginform.uname.value="";
+		loginform.uname.style.color="#000000";
+   }
+
+}
+
+function unameblur()
+{
+   if(loginform.uname.value=="")
+	{
+                    loginform.uname.value="Enter Your Regd. No";
+			loginform.uname.style.color="#BBBBBB";
+	}
+
+}
+
+function adminlogin()
+{
+loginform.uname.value="Administrator";
+loginform.pwd.value="";
+loginform.uname.disabled=true;
+loginform.pwd.disabled=false;
+loginform.role.value="admin";
+}
+function emlogin()
+{
+loginform.uname.value="Event Manager";
+loginform.pwd.value="";
+loginform.uname.disabled=true;
+loginform.pwd.disabled=false;
+loginform.role.value="em";
+}
+function aluminlogin()
+{
+   loginform.uname.value="Enter Your Regd. No";
+   loginform.pwd.value="";
+   loginform.uname.disabled=false;
+   loginform.pwd.disabled=false;
+   loginform.role.value="alumin";
+   loginform.uname.style.color="#BBBBBB";
+}
+function studentlogin()
+{
+   loginform.uname.value="Enter Your Regd. No";
+   loginform.pwd.value="";
+   loginform.uname.disabled=false;
+   loginform.pwd.disabled=false;
+   loginform.role.value="student";
+   loginform.uname.style.color="#BBBBBB";
+}
+function check()
+{
+	if(loginform.uname.value==""||loginform.pwd.value==""||loginform.uname.value=="Enter Your Regd. No")
+	{
+		window.alert("Invalid User Name or Password");
+		window.event.returnValue=false;
+	}
+}
+function init()
+{
+var browser=navigator.appName;
+/* if(browser!='Microsoft Internet Explorer')
+{
+    window.alert("Please use Internet Explorer");
+    document.writeln("<b>Your Browser is: "+browser+"<br>Your Browser is not supported to view this page. <br> Please open this page with Microsoft Internet Explorer</b>");
+} */
+loginform.uname.disabled=true;
+loginform.pwd.disabled=true;
+loginform.uname.value="";
+loginform.pwd.value="";
+}
+
+
+
+</script>
+<style type="text/css">
+
+
+#myimage{
+filter:progid:DXImageTransform.Microsoft.Fade(Duration=3)
+}
+
+#logins 
+{
+    float:right;
+     border:1px solid;
+}
+
+ #tabsH {
+      float:left;
+      width:100%;
+      background:#000;
+      font-size:93%;
+      line-height:normal;
+      }
+    #tabsH ul {
+	  margin:0;
+	  padding:10px 10px 0 50px;
+	  list-style:none;
+      }
+
+    #tabsH li {
+      display:inline;
+      margin:0;
+      padding:0;
+      }
+
+    #tabsH a {
+      float:right;
+      background:url("tableftH.gif") no-repeat left top;
+      margin:0;
+      padding:0 0 0 4px;
+      text-decoration:none;
+       font-size:16;
+      }
+
+    #tabsH a span {
+      float:left;
+      display:block;
+      background:url("tabrightH.gif") no-repeat right top;
+      padding:5px 15px 4px 6px;
+      color:#FFF;
+      }
+
+    #tabsH a span {float:none;}
+
+
+    #tabsH a:hover span {
+      color:white;
+      }
+
+    #tabsH a:hover {
+      background-position:0% -42px;
+      }
+
+    #tabsH a:hover span {
+      background-position:100% -42px;
+      }
+
+</style>
+</head>
+<body link=black vlink=black alink=black onload="init();trans();" >
+<img src=Images/logo.jpg width=100% style="margin-top:-10px"><br>
+
+<div id="tabsH" style="margin-top:20px">
+  <ul>
+    <li><a href="#" onclick="studentlogin()"><span><b>Student</span></a></li>
+    <li><a href="#" onclick="aluminlogin()"><span>Alumni</span></a></li>
+    <li><a href="#" onclick="emlogin()"><span>Event Manager</span></a></li>
+    <li><a href="#" onclick="adminlogin()"><span>Administrator</span></a></li>
+ </ul>
+</div>
+
+<BR><BR>
+
+<form method="POST" action="loginform" name="loginform" onsubmit="check()">
+<div id="logins">
+<BR><BR><BR><BR>
+<input type=hidden name="role" value="">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<label><b>User Name:&nbsp</b></label>
+<input type=text name="uname" size=20 onfocus="unamefocus()" onblur="unameblur()">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<BR><BR>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<label><b>Password &nbsp&nbsp:&nbsp</b></label>
+<input type=password name="pwd" size=20>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<BR><BR><BR><BR>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type=submit value="    Login    "><BR><BR><BR><BR>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="forgot.html"><b>Forgot Password?</b></a><BR><BR>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="register.html"><b>Register</b></a>
+<BR><BR><BR><BR>
+</div>
+</form>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<img id="image1" src="ex1.jpg" height=180 width=200  border=1>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<img id="image2" src="ex2.jpg" height=180 width=200  border=1>
+<BR><BR>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<img id="image3" src="ex3.jpg" height=180 width=200  border=1>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<img id="image4" src="ex4.jpg" height=180 width=200  border=1>
+
+
+
+
+</body>
+</html>
